@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup de Formulário de Reserva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .form-section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .section-header {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; /* Espaço entre os campos */
+            margin-bottom: 15px;
+        }
+        .input-group > div {
+            flex-grow: 1; /* Permite que os campos cresçam */
+            min-width: 150px; /* Garante que campos pequenos não desapareçam */
+        }
+        /* Estilos específicos para replicar o layout de 2 ou 3 colunas */
+        .col-2 > div {
+            flex: 1 1 calc(50% - 7.5px); /* Dois campos por linha */
+        }
+        .col-3 > div {
+            flex: 1 1 calc(33.33% - 10px); /* Três campos por linha */
+        }
+        .input-full {
+            flex-basis: 100% !important; /* Ocupa a largura total */
+        }
+
+        /* Estilo dos campos */
+        input[type="text"], input[type="email"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Inclui padding e border na largura total */
+        }
+        
+        /* Estilos para o botão de envio */
+        button {
+            background-color: #d90000;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="form-section">
+            <div class="section-header">
+                Localize sua Reserva 
+                <span title="Informação adicional">ⓘ</span>
+            </div>
+            
+            <form id="bookingForm">
+                
+                <div class="input-group col-2">
+                    <div>
+                        <label for="bookingRef">Referência da Reserva (opcional)</label>
+                        <input type="text" id="bookingRef" placeholder="Referência da Reserva">
+                    </div>
+                    <div>
+                        <label for="departureDate">Data de Partida</label>
+                        <div class="input-group" style="gap: 5px; margin-bottom: 0;">
+                            <input type="text" id="depDateDay" placeholder="23" style="width: 30%;">
+                            <input type="text" id="depDateMonth" placeholder="Out" style="width: 40%;">
+                            <input type="text" id="depDateYear" placeholder="2024" style="width: 30%;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group col-2">
+                    <div>
+                        <label for="depAirport">Aeroporto de Partida</label>
+                        <input type="text" id="depAirport" placeholder="Ex: GRU">
+                    </div>
+                    <div>
+                        <label for="arrAirport">Aeroporto de Chegada</label>
+                        <input type="text" id="arrAirport" placeholder="Ex: DXB">
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="form-section">
+            <div class="section-header">
+                Seus Detalhes Pessoais
+            </div>
+
+            <form id="personalDetailsForm">
+                
+                <div class="input-group col-3">
+                    <div>
+                        <label for="title">Título</label>
+                        <select id="title">
+                            <option value="">Selecione</option>
+                            <option value="mr">Sr.</option>
+                            <option value="ms">Sra.</option>
+                            <option value="dr">Dr.</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="firstName">Primeiro Nome</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div>
+                        <label for="lastName">Sobrenome</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+
+                <div class="input-group col-2">
+                    <div class="input-full">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="input-full">
+                        <label for="confirmEmail">Confirme o E-mail</label>
+                        <input type="email" id="confirmEmail" required>
+                    </div>
+                </div>
+
+                <div class="input-group" style="flex-wrap: nowrap;">
+                    <div style="flex: 1;">
+                        <label for="phoneType">Tipo de Telefone</label>
+                        <select id="phoneType">
+                            <option value="">Tipo</option>
+                            <option value="mobile">Celular</option>
+                            <option value="home">Residencial</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="countryCode">Cód. País</label>
+                        <select id="countryCode">
+                            <option value="">+55</option>
+                            <option value="1">+1</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="areaCode">Cód. Área</label>
+                        <input type="text" id="areaCode" placeholder="DDD">
+                    </div>
+                    <div style="flex: 2;">
+                        <label for="phoneNumber">Número de Telefone</label>
+                        <input type="text" id="phoneNumber" placeholder="9xxxxxxxx">
+                    </div>
+                </div>
+
+                <div class="input-group col-2">
+                    <div>
+                        <label for="skywards">Nº Skywards Emirates (Opcional)</label>
+                        <input type="text" id="skywards">
+                    </div>
+                    <div>
+                        <label for="businessRewards">Nº Business Rewards (Opcional)</label>
+                        <input type="text" id="businessRewards">
+                    </div>
+                </div>
+
+                <button type="submit">Enviar Detalhes</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('personalDetailsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Formulário de Detalhes Pessoais submetido! (Mockup)');
+        });
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
