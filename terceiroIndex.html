@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro TicketSport - Contato</title>
+    <style>
+        /* MANTENDO O PADRÃO DE ESTILO ANTERIOR (Cores, Fontes e Caixas) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Simula o fundo cinza claro */
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px; /* Reduzindo a largura para focar no centro */
+            margin: 0 auto;
+        }
+        .form-section {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .section-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* NOVO PADRÃO: Campos de Coluna Única */
+        .input-item {
+            margin-bottom: 20px;
+            position: relative; /* Para alinhamento do texto */
+        }
+        .input-item label {
+            display: none; /* Escondendo o label, pois o placeholder ou o campo é o foco */
+        }
+
+        /* Estilo dos campos */
+        input[type="text"], input[type="email"], select {
+            width: 100%;
+            padding: 12px;
+            border: none; /* Removendo borda padrão */
+            border-bottom: 1px solid #ccc; /* Linha sutil na parte inferior */
+            background-color: #f9f9f9; /* Levemente cinza como na imagem */
+            border-radius: 0;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        select {
+             /* Remove a seta padrão do Chrome/Safari e usa a do Bootstrap/Vercel-like */
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none;
+            /* Adiciona um ícone customizado de seta (Apenas visual, sem ícone SVG real) */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-24.8%200L146.2%20185.6%2030.3%2069.4a17.6%2017.6%200%200%200-24.8%2024.8l130.8%20130.8c6.8%206.8%2017.7%206.8%2024.5%200l130.8-130.8a17.6%2017.6%200%200%200%200-24.8z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Estilo para o campo de telefone */
+        .input-telefone {
+            display: flex;
+        }
+        .input-telefone select {
+            width: 70px;
+            border-right: 1px solid #ccc;
+            margin-right: 10px;
+            flex-shrink: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .input-telefone input {
+            flex-grow: 1;
+            background-color: #f9f9f9;
+        }
+        
+        /* Estilos para o botão de envio */
+        button {
+            width: 100%;
+            background-color: #007bff; /* Azul primário para CTA (Call to Action) */
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="form-section">
+            <div class="section-header">
+                Preencha o formulário e entraremos em contato com você 😊
+            </div>
+
+            <form id="ticketSportForm">
+                
+                <div class="input-item">
+                    <label for="nomeCompleto">Nome completo*</label>
+                    <input type="text" id="nomeCompleto" placeholder="Nome completo*" required>
+                </div>
+
+                <div class="input-item">
+                    <label for="email">E-mail*</label>
+                    <input type="email" id="email" placeholder="E-mail*" required>
+                </div>
+                
+                <div class="input-item">
+                    <label for="telefone">Telefone*</label>
+                    <div class="input-telefone">
+                        <select id="codPaisTelefone">
+                            <option value="+55">+55</option>
+                            <option value="+1">+1</option>
+                        </select>
+                        <input type="text" id="telefone" placeholder="Telefone*" required>
+                    </div>
+                </div>
+
+                <div class="input-item">
+                    <label for="empresa">Empresa*</label>
+                    <input type="text" id="empresa" placeholder="Empresa*" required>
+                </div>
+                
+                <div class="input-item">
+                    <label for="regiao">Região*</label>
+                    <select id="regiao" required>
+                        <option value="">Região*</option>
+                        <option value="sudeste">Sudeste</option>
+                        <option value="sul">Sul</option>
+                        <option value="nordeste">Nordeste</option>
+                        <option value="nordeste">Norte</option>
+                        <option value="nordeste">Centro-oeste</option>
+                    </select>
+                </div>
+
+                <div class="input-item">
+                    <label for="modalidade">Qual é a modalidade esportiva do seu evento?*</label>
+                    <select id="modalidade" required>
+                        <option value="">Qual é a modalidade esportiva do seu evento?*</option>
+                        <option value="futebol">Futebol</option>
+                        <option value="basquete">Basquete</option>
+                        <option value="corrida">Corrida</option>
+                        <option value="corrida">Natação</option>
+                        <option value="corrida">Ciclismo</option>
+
+                    </select>
+                </div>
+                
+                <div class="input-item">
+                    <label for="qtdEventos">Quantidade de eventos organizados por ano*</label>
+                    <select id="qtdEventos" required>
+                        <option value="">Quantidade de eventos organizados por ano*</option>
+                        <option value="1-5">1 a 5</option>
+                        <option value="6-10">6 a 10</option>
+                        <option value="10+">Mais de 10</option>
+                    </select>
+                </div>
+                
+                <div class="input-item">
+                    <label for="nomeEvento">Qual o nome do seu evento?*</label>
+                    <input type="text" id="nomeEvento" placeholder="Qual o nome do seu evento?*" required>
+                </div>
+
+                <div class="input-item">
+                    <label for="eventoRegular">O seu evento já possui regulamento?*</label>
+                    <select id="eventoRegular" required>
+                        <option value="">O seu evento já possui regulamento?*</option>
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                </div>
+                
+                <div class="input-item">
+                    <label for="mesRealizacao">Qual é o mês de realização do seu evento?*</label>
+                    <select id="mesRealizacao" required>
+                        <option value="">Qual é o mês de realização do seu evento?*</option>
+                        <option value="jan">Janeiro</option>
+                        <option value="fev">Fevereiro</option>
+                        <option value="mar">Março</option>
+                        <option value="mar">Abril</option>
+                        <option value="mar">Maio</option>
+                        <option value="mar">Junho</option>
+                        <option value="mar">Julho</option>
+                        <option value="mar">Agosto</option>
+                        <option value="mar">Setembro</option>
+                        <option value="mar">Outubro</option>
+                        <option value="mar">Novembro</option>
+                        <option value="mar">Dezembro</option>
+
+                    </select>
+                </div>
+
+                <div class="input-item">
+                    <label for="indicacao">Coloque o nome em caso de indicação</label>
+                    <input type="text" id="indicacao" placeholder="Coloque o nome em caso de indicação">
+                </div>
+                
+                <p style="font-size: 0.8em; color: #666; margin-top: 25px;">
+                    Ao preencher o formulário, você está ciente que a Ticket Sports poderá enviar comunicações e conteúdos de acordo com seus interesses.
+                </p>
+
+                <button type="submit">ENTENDI</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('ticketSportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulação de coleta de dados
+            const nome = document.getElementById('nomeCompleto').value;
+            alert(`Obrigado, ${nome}! Seus dados foram coletados. Um representante entrará em contato.`);
+            
+            // Em uma aplicação real, aqui o fetch/axios enviaria os dados para o backend.
+            document.getElementById('ticketSportForm').reset();
+        });
+    </script>
+</body>
+</html>
