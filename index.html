@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Eventos Esportivos | Organizador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+        }
+        .section {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #eventos-container {
+            flex: 2; /* Ocupa mais espaço */
+            background-color: #ffffff;
+        }
+        #formulario-organizador {
+            flex: 1; /* Ocupa menos espaço */
+            background-color: #e6f7ff; /* Fundo azul claro para o formulário */
+        }
+        .evento-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .evento-card h3 {
+            margin-top: 0;
+            color: #0056b3;
+        }
+        .evento-card p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        form input[type="text"],
+        form input[type="email"] {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        form button:hover {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🏆 Painel de Eventos Esportivos Fictícios</h1>
+
+    <div class="container">
+        
+        <div class="section" id="eventos-container">
+            <h2>Próximos Eventos</h2>
+            <div id="eventos-lista">
+                </div>
+        </div>
+
+        <div class="section" id="formulario-organizador">
+            <h2>👤 Cadastro de Organizador</h2>
+            <p>Preencha o formulário abaixo para registrar-se como novo organizador de eventos.</p>
+            
+            <form id="cadastroForm">
+                <label for="nomeOrganizador">Nome Completo:</label>
+                <input type="text" id="nomeOrganizador" required>
+
+                <label for="emailOrganizador">E-mail de Contato:</label>
+                <input type="email" id="emailOrganizador" required>
+
+                <button type="submit">Cadastrar Organizador</button>
+            </form>
+            
+            <p id="mensagemFeedback" style="margin-top: 15px; color: green; font-weight: bold;"></p>
+        </div>
+
+    </div>
+
+    <script>
+        // --- 1. ESTRUTURA JSON PARA OS EVENTOS ---
+        const eventosJSON = [
+            { id: 1, nome: "Maratona Aquática do Sol", organizador: "Clube Flipper", data: "2025-08-15", descricao: "Travessia de 5km em águas abertas, desafio para nadadores experientes." },
+            { id: 2, nome: "Corrida dos 10K da Lua Cheia", organizador: "Time Noturno", data: "2025-09-20", descricao: "Corrida noturna com percurso iluminado por velas e luzes decorativas." },
+            { id: 3, nome: "Torneio de Vôlei de Areia 'Onda Forte'", organizador: "Praia Sports", data: "2025-10-05", descricao: "Competição de duplas na praia principal, valendo prêmios em dinheiro." },
+            { id: 4, nome: "Desafio Ciclístico da Montanha", organizador: "Aventura Radical", data: "2025-11-12", descricao: "Percurso de mountain bike de alta dificuldade, com 500m de elevação." },
+            { id: 5, nome: "Copa Fantasia de Xadrez", organizador: "Mente Brilhante", data: "2025-12-01", descricao: "Torneio de xadrez rápido (blitz), com participantes fantasiados." },
+            { id: 6, nome: "Mini-Triathlon Urbano", organizador: "Fitness City", data: "2026-01-28", descricao: "Natação, ciclismo e corrida em um circuito totalmente dentro da cidade." },
+            { id: 7, nome: "Campeonato de Skate Bowl", organizador: "Pista Total", data: "2026-02-14", descricao: "Manobras radicais na nova pista de skate bowl da cidade." },
+            { id: 8, nome: "Luta Livre 'Gladiadores Modernos'", organizador: "Ringue Brasil", data: "2026-03-08", descricao: "Exibição de lutas coreografadas com grandes nomes do esporte." },
+            { id: 9, nome: "Rally de Carros Clássicos", organizador: "Motor Nostalgia", data: "2026-04-22", descricao: "Passeio e competição de regularidade para veículos fabricados antes de 1980." },
+            { id: 10, nome: "Festival de Basquete 3x3", organizador: "Cesta Rápida", data: "2026-05-18", descricao: "Torneio de basquete com formato de três contra três, aberto a todos." }
+        ];
+
+        // --- 2. LÓGICA PARA APRESENTAR OS EVENTOS NA TELA ---
+        function carregarEventos() {
+            const listaContainer = document.getElementById('eventos-lista');
+            listaContainer.innerHTML = ''; // Limpa o conteúdo (caso seja chamado mais de uma vez)
+
+            eventosJSON.forEach(evento => {
+                // Cria o elemento de card para o evento
+                const card = document.createElement('div');
+                card.classList.add('evento-card');
+                
+                // Formata a data para um padrão mais legível
+                const dataFormatada = new Date(evento.data).toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+
+                // Preenche o HTML interno do card
+                card.innerHTML = `
+                    <h3>${evento.nome} (ID: ${evento.id})</h3>
+                    <p><strong>📅 Data:</strong> ${dataFormatada}</p>
+                    <p><strong>🧑‍🤝‍🧑 Organizador:</strong> ${evento.organizador}</p>
+                    <p>${evento.descricao}</p>
+                `;
+
+                // Adiciona o card à lista
+                listaContainer.appendChild(card);
+            });
+        }
+
+        // --- 3. LÓGICA DO FORMULÁRIO DE CADASTRO DO ORGANIZADOR ---
+        function cadastrarOrganizador(event) {
+            // Previne o recarregamento padrão da página ao submeter o formulário
+            event.preventDefault(); 
+
+            const nome = document.getElementById('nomeOrganizador').value;
+            const email = document.getElementById('emailOrganizador').value;
+            const feedback = document.getElementById('mensagemFeedback');
+
+            // Lógica de processamento (em um ambiente real, você enviaria esses dados para um servidor)
+            if (nome && email) {
+                // Mensagem de feedback para o usuário
+                feedback.textContent = `✅ Organizador "${nome}" cadastrado com sucesso! Email: ${email}. (Em produção, esses dados seriam salvos.)`;
+                
+                // Limpa o formulário após o "cadastro"
+                document.getElementById('cadastroForm').reset();
+            } else {
+                feedback.textContent = `❌ Por favor, preencha todos os campos do formulário.`;
+                feedback.style.color = 'red';
+            }
+        }
+
+        // --- 4. INICIALIZAÇÃO: Chama as funções quando a página carregar ---
+        // 1. Carrega os eventos do JSON
+        carregarEventos();
+
+        // 2. Adiciona o listener de evento ao formulário
+        const form = document.getElementById('cadastroForm');
+        form.addEventListener('submit', cadastrarOrganizador);
+
+    </script>
+</body>
+</html>
