@@ -220,66 +220,58 @@
     <script>
 
 const eventosFicticios = [
-    {
-        ID: 101,
-        nome: "Liga de Skate Urbano - Etapa Verão",
-        organizador: "Crew Radical",
-        descricao: "Competição de manobras de rua e skatepark, focada em novos talentos da modalidade street."
+    [
+  {
+    "id": 1,
+    "nome": "A Corrida Contra o Tempo Mágico",
+    "tema": "Contos de Fadas e Fantasia",
+    "distancias": ["5K", "10K"],
+    "precos": {
+      "5K": "R$ 80,00",
+      "10K": "R$ 100,00"
     },
-    {
-        ID: 102,
-        nome: "Maratona do Sol Nascente (42K)",
-        organizador: "Acelerados Runners Club",
-        descricao: "Maratona clássica com percurso litorâneo, iniciando antes do nascer do sol para clima ameno."
+    "atracao_principal": "Competição de Melhor Fantasia de Conto de Fadas e Melhor Fantasia de Criatura Mágica.",
+    "kit_corredor": [
+      "Camiseta com design de pergaminho antigo",
+      "Medalha finisher em formato de chave mágica",
+      "Elixir (bebida isotônica especial)"
+    ],
+    "modalidade": "Corrida de Rua"
+  },
+  {
+    "id": 2,
+    "nome": "Street Heroes Run - O Desafio da Liga",
+    "tema": "Super-Heróis e Vilões",
+    "distancias": ["3K", "5K"],
+    "precos": {
+      "3K": "R$ 70,00",
+      "5K": "R$ 90,00"
     },
-    {
-        ID: 103,
-        nome: "Torneio Intergaláctico de E-Sports",
-        organizador: "Pixel Dreamers LTDA",
-        descricao: "Grande final do campeonato de jogos de estratégia online, com transmissão internacional."
+    "atracao_principal": "Corredor Mascarado mais Rápido e Melhor Fantasia de Grupo ('Liga' ou 'Esquadrão'). Corrida Noturna.",
+    "kit_corredor": [
+      "Camiseta tecnológica com design de uniforme de super-herói",
+      "Número de peito com logo da 'Liga'",
+      "Power Bar (barra de proteína)"
+    ],
+    "modalidade": "Corrida de Rua"
+  },
+  {
+    "id": 3,
+    "nome": "Retrô 8-Bit Dash",
+    "tema": "Videogames Retrô e Cultura Pop Anos 80/90",
+    "distancias": ["5K"],
+    "precos": {
+      "5K": "R$ 85,00"
     },
-    {
-        ID: 104,
-        nome: "Copa de Vôlei de Praia 4x4",
-        organizador: "Areia Quente Eventos",
-        descricao: "Torneio amador de vôlei de praia com equipes mistas, realizado no fim de semana."
-    },
-    {
-        ID: 105,
-        nome: "Rally de Regularidade da Serra",
-        organizador: "Motor Histórico Clube",
-        descricao: "Desafio de precisão e navegação para carros clássicos e antigos na região montanhosa."
-    },
-    {
-        ID: 106,
-        nome: "Desafio Ciclístico 'Rei da Montanha'",
-        organizador: "Pedal Forte",
-        descricao: "Prova de resistência em Mountain Bike em trilhas de alta dificuldade e elevação acentuada."
-    },
-    {
-        ID: 107,
-        nome: "Campeonato de Sinuca Profissional",
-        organizador: "Mesa Limpa Promotora",
-        descricao: "Torneio de sinuca profissional aberto, valendo vaga para o circuito nacional."
-    },
-    {
-        ID: 108,
-        nome: "Festival de Basquete 3x3 (Streetball)",
-        organizador: "Cesta Rápida",
-        descricao: "Competição dinâmica e rápida de basquete de rua, com música e grafite."
-    },
-    {
-        ID: 109,
-        nome: "Natação de Inverno - Travessia do Lago",
-        organizador: "Focas Aquáticas",
-        descricao: "Travessia de águas frias em lago artificial, evento para nadadores de resistência."
-    },
-    {
-        ID: 110,
-        nome: "Taça Fictícia de Rugby Sevens",
-        organizador: "União Oval",
-        descricao: "Torneio rápido de Rugby de sete jogadores, focado na velocidade e agilidade."
-    }
+    "atracao_principal": "Melhor Fantasia de Personagem de Videogame e Melhor Fantasia Anos 80/90. Trilha Sonora 8-bit.",
+    "kit_corredor": [
+      "Camiseta com estampa em estilo pixel art",
+      "Medalha finisher em formato de controle de videogame clássico",
+      "Bônus (doce/guloseima da época)"
+    ],
+    "modalidade": "Corrida de Rua"
+  }
+]
 ];
 
         document.getElementById('ticketSportForm').addEventListener('submit', function(e) {
